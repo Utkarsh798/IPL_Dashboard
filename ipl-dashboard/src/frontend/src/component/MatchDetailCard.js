@@ -1,6 +1,8 @@
 import {React}  from "react";
 import {Link} from "react-router-dom";
 
+import './MatchDetailCard.css';
+
 export const MatchDetailCard = ({teamName, match}) => {
     if(!match) return null;
 
@@ -9,11 +11,31 @@ export const MatchDetailCard = ({teamName, match}) => {
 
     return (
         <div className="MatchDetailCard">
-            <h3>Latest Matches </h3>
-            <h1><Link to={otherTeamRoute}>{otherTeam}</Link></h1>
-            <h2>{match.date}</h2>
-            <h3>at {match.venue}</h3>
-            <h3>{match.matchWinner} won by {match.result_margin} {match.result}</h3>
+
+            <div className="detail">
+                <h3>Latest Matches </h3>
+                <span className="vs">vs</span>
+                <h1><Link to={otherTeamRoute}>{otherTeam}</Link></h1>
+                <h2 className="match-date">{match.date}</h2>
+                <h3 className="match-venue">at {match.venue}</h3>
+                <h3 className="match-result">{match.matchWinner} won by {match.result_margin} {match.result}</h3>
+            </div>
+
+            <div className="additional-detail">
+                <h3>First Innings</h3>
+                <p>{match.team1}</p>
+
+                <h3>Second Innings</h3>
+                <p>{match.team2}</p>
+
+                <h3>Man of the Match</h3>
+                <p>{match.playerOfMatch}</p>
+
+                <h3>Umpires</h3>
+                <p>{match.umpire1}, {match.umpire2}</p>
+
+
+            </div>
         </div>
     );
 }

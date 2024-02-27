@@ -18,7 +18,7 @@ export const MatchPage = () => {
     );
 
     return (
-        <div className="TeamPage">
+        <div className="MatchPage">
            <h1>Match Page</h1>
             {
                 matches.map(match => <MatchDetailCard teamName = {teamName} match={match} />)
