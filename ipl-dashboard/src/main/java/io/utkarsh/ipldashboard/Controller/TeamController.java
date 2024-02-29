@@ -30,10 +30,10 @@ public class TeamController {
     }
 
     @GetMapping("/team/{teamName}/matches")
-    public List<Match> getMatchesForTeam(@PathVariable String teamName, @RequestParam int year){
-        LocalDate startDate = LocalDate.of(year, 1,1);
-        LocalDate endDate = LocalDate.of(year+1, 1,1);
-        return this.matchRepository.getMatchByTeamBetweenDates(
+    public List<Match> getMatchesForTeam(@PathVariable String teamName, @RequestParam int year) {
+        LocalDate startDate = LocalDate.of(year, 1, 1);
+        LocalDate endDate = LocalDate.of(year + 1, 1, 1);
+        return this.matchRepository.getMatchesByTeamBetweenDates(
                 teamName,
                 startDate,
                 endDate

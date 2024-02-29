@@ -3,15 +3,19 @@ import {Link} from "react-router-dom";
 
 import './MatchDetailCard.css';
 
-export const MatchDetailCard = ({teamName, match}) => {
+export const MatchDetailCard = ({teamName, match, teamColor}) => {
     if(!match) return null;
 
     const otherTeam = match.team1 === teamName ? match.team2 : match.team1;
     const otherTeamRoute = `/teams/${otherTeam}`;
     const isMatchWon = teamName === match.matchWinner;
 
+    const teamColorStyle = {
+        backgroundColor: teamColor,
+    };
+
     return (
-        <div className="MatchDetailCard">
+        <div className="MatchDetailCard" style={teamColorStyle}>
 
             <div className="detail">
                 <h3>Latest Matches </h3>

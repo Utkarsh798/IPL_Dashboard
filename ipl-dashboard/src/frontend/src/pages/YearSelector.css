@@ -1,0 +1,56 @@
+.YearSelector{
+    padding: 5px;
+    list-style-type: none;
+    margin-left: 10px;
+    justify-self: end;
+
+    .each-year{
+        display: inline-block;
+
+        width: 200px;
+        height: 50px;
+        margin: 10px;
+
+        border-radius: 20px;
+        box-shadow: 0 8px 16px;
+
+        text-align: center;
+        line-height: 50px;
+        font-size: 1rem;
+        background-color: white;
+
+
+    }
+
+    .each-year:hover{
+        background-image: linear-gradient(to right,
+        red, orange, yellow, green, blue, indigo, violet);
+        backdrop-filter: blur(100px);
+        animation: zoomIn 3s normal infinite, rainbow 2s ease infinite;
+
+
+    }
+
+
+}
+
+
+@keyframes zoomIn {
+    0% {
+        transform: scale(1); /* Initial scale */
+    }
+    50% {
+        transform: scale(1.1); /* Zoom in */
+    }
+    100% {
+        transform: scale(1); /* Zoom out to original size */
+    }
+}
+@keyframes rainbow {
+    from {
+        background-position: 0.1% 0.1%; /* Start at beginning of gradient */
+    }
+    to {
+        background-position: 100% 0.1%; /* Move the gradient to the right */
+    }
+}
