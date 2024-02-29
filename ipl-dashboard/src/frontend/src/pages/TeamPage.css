@@ -1,23 +1,22 @@
 .TeamPage{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1.3fr;
-    grid-template-rows: 1.3fr 0.7fr 1fr 1fr;
-    grid-column-gap: 10px;
-    grid-row-gap: 10px;
+    grid-template-rows: 1.3fr 0.4fr 0.9fr 0.8fr;
     border-radius: 20px;
     box-shadow: 0 8px 16px;
 
     .Logo{
         grid-column: 3 span;
-        margin: 15px;
+        margin-top:10px;
+        margin-left:10px;
 
         background-repeat: no-repeat;
         background-size: contain;
         background-position: center;
 
-
         border-radius: 20px;
         box-shadow: 0 8px 16px;
+
 
     }
 
@@ -46,11 +45,9 @@
         text-align: center;
 
         .team-name{
-            font-family: Verdana;
             position: relative;
             font-size: 4rem;
             font-weight: bolder;
-            margin-bottom: 20px;
             text-shadow: 8px 8px 16px rgba(0, 0, 1, 0.5);
             animation: zoomInOut 4s infinite alternate;
         }
@@ -64,15 +61,19 @@
     .win-loss-section{
         justify-self: center;
         align-self: center;
+        text-shadow: 8px 8px 16px rgba(0, 0, 1, 0.5);
+        animation: zoomInOut 3s infinite alternate;
     }
 
     .more-link{
         justify-self: center;
         align-self: center;
+        font-size: 2rem ;
     }
 
 
 }
+
 
 @keyframes zoomInOut {
     0% {

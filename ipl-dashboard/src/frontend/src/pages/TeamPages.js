@@ -2,6 +2,7 @@ import {React, useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
 import {MatchDetailCard} from "../component/MatchDetailCard";
 import {MatchSmallCard} from "../component/MatchSmallCard";
+import { PieChart } from 'react-minimal-pie-chart';
 
 import './TeamPage.css';
 import {teams} from "../TeamLogoImages/TeamLogo";
@@ -46,13 +47,24 @@ export const TeamPage = () => {
                 <h1 className="team-name">{team.teamName}</h1>
             </div>
 
-            <div className="win-loss-section">
-                Win / loss
+            <div className="win-loss-section" style={{ padding: '20px' }}>
+                <PieChart
+                    data={[
+                        { title: 'Wins', value: team.totalWins, color: 'green' },
+                        { title: 'Losses', value: team.totalMatches - team.totalWins, color: 'red' },
+                    ]}
+                    radius={40}
+                    paddingAngle={7}
+                    startAngle={7}
+                    lineWidth={70}
+                    label={({ dataEntry }) => dataEntry.title + ': ' + dataEntry.value} // Assigning label based on dataEntry
+                    labelStyle={{ fontSize: '5px', fontFamily: 'sans-serif', fill: '#000' }} // Customizing label style
+                />
             </div>
 
             <div className="match-detail-section">
 
-                <MatchDetailCard teamName={team.teamName} match={team.matches[0]}/>
+                <MatchDetailCard  teamName={team.teamName} match={team.matches[0]}/>
             </div>
 
             {team.matches.slice(1).map(match => <MatchSmallCard teamName={team.teamName} match={match}/>)}
