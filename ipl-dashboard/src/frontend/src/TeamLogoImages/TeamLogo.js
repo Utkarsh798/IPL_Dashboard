@@ -1,5 +1,5 @@
 
-export const teams = [
+export const teams_array = [
     {
         teamName: "Mumbai Indians",
         logoUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/c/cd/Mumbai_Indians_Logo.svg/1200px-Mumbai_Indians_Logo.svg.png",

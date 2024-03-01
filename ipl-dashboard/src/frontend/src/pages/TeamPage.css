@@ -1,10 +1,26 @@
 .TeamPage{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1.3fr;
-    grid-template-rows: 1.3fr 0.4fr 0.9fr 0.8fr;
+    grid-template-rows: 0.2fr 1.2fr 0.4fr 0.9fr 0.8fr;
     border-radius: 20px;
     box-shadow: 0 8px 16px;
 
+
+
+    .back-button{
+        grid-column: 4 span;
+
+        .back-text{
+            display: flex;
+            border-radius: 20px;
+            box-shadow: 0 8px 16px;
+            width:150px;
+            height: 60px;
+            margin:15px;
+            align-items: center;
+            justify-content: center;
+        }
+    }
     .Logo{
         grid-column: 3 span;
         margin-top:10px;
@@ -57,7 +73,9 @@
     .match-detail-section{
         grid-column: 4 span;
         border-radius: 20px;
+
     }
+
     .win-loss-section{
         justify-self: center;
         align-self: center;

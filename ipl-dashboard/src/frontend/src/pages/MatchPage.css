@@ -7,10 +7,27 @@
     box-shadow: 0 8px 16px;
 
 
-    .teamName-and-logo{
+    .back-button{
+        grid-row: 1 span;
+        grid-column: 1 span;
+
+        .back-text{
+            display: flex;
+            border-radius: 20px;
+            box-shadow: 0 8px 16px;
+            width:150px;
+            height: 60px;
+            margin:20px;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+
+    .teamName-matchpage{
         font-size: 2.5rem;
         margin-bottom: 30px;
-        grid-column: 3 span;
+        grid-column: 1 span;
         justify-self: center;
         display: flex;
         flex-direction: column;
@@ -29,7 +46,6 @@
         margin-left: 20px;
 
     }
-
     .match-detail{
         margin-bottom: 100px;
         backdrop-filter: blur(10px);

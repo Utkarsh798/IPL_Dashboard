@@ -7,6 +7,7 @@
     border-radius: 20px;
     box-shadow: 0 8px 16px;
     padding: 5px;
+    transition: transform 0.3s ease;
 
 
     .match-date, .match-venue, .match-result{
@@ -44,4 +45,7 @@
             margin-bottom: 10px;
         }
     }
+}
+.MatchDetailCard:hover{
+    transform: scale(1.03);
 }

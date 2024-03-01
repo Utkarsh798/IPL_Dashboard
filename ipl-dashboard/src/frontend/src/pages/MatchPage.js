@@ -1,24 +1,30 @@
 import {React, useEffect, useState} from 'react';
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import {MatchDetailCard} from "../component/MatchDetailCard";
 
 import './MatchPage.css';
-import {teams} from "../TeamLogoImages/TeamLogo";
-import {YearSelector} from "./YearSelector";
+import {teams_array} from "../TeamLogoImages/TeamLogo";
+import {YearSelector} from "../component/YearSelector";
+import {motion} from "framer-motion";
 
 export const MatchPage = () => {
 
     const [matches, setMatch] = useState([]);
+    const [total_years, setYears] = useState([]);
     const {teamName, year} = useParams();
-    const selectedTeam = teams.find((teamData) => teamData.teamName === teamName);
+    const selectedTeam = teams_array.find((teamData) => teamData.teamName === teamName);
 
     useEffect(
         () => {
             const fetchMatches = async () => {
                 const response = await fetch(`http://localhost:8080/team/${teamName}/matches?year=${year}`);
+                const response_year = await fetch(`http://localhost:8080/team/${teamName}/years`);
 
                 const data = await response.json();
+                const year_data = await response_year.json();
+
                 setMatch(data);
+                setYears(year_data)
             };
             fetchMatches();
 
@@ -27,22 +33,49 @@ export const MatchPage = () => {
     );
 
     return (
-        <div className="MatchPage" >
-            <div className="teamName-and-logo">
+        <div className="MatchPage">
+            <div className="back-button">
+                <h2 className="back-text">
+                    <Link to={`/teams/${teamName}`}>
+                        &lt;&lt; Back
+                    </Link>
+
+                </h2>
+            </div>
+
+            <motion.div className="teamName-matchpage"
+                 initial={{y:"10px", opacity:0}}
+                 animate={{y:0, opacity:1}}
+                 exit={{y:"50%", opacity:0}}
+                 transition={{duration: 0.7, delay: 0.2}}
+            >
                 <h1>{teamName}</h1>
-            </div>
-            <div className="year-selector">
-                <YearSelector teamName={teamName} />
-            </div>
-            <div className="match-detail"  >
+            </motion.div>
+
+
+            <motion.div className="year-selector"
+                 initial={{y:"10px", opacity:0}}
+                 animate={{y:0, opacity:1}}
+                 exit={{y:"50%", opacity:0}}
+                 transition={{duration: 0.7, delay: 0.3}}
+            >
+                <YearSelector total_years={total_years} teamName={teamName}/>
+            </motion.div>
+            <motion.div className="match-detail"
+                 initial={{y:"10px", opacity:0}}
+                 animate={{y:0, opacity:1}}
+                 exit={{y:"50%", opacity:0}}
+                 transition={{duration: 0.7, delay: 0.4}}
+            >
                 {matches.map(match =>
                     <MatchDetailCard
+                        key={match.id}
                         teamName={teamName}
                         match={match}
-                        teamColor = {selectedTeam.teamColour}
+                        teamColor={selectedTeam.teamColour}
                     />
                 )}
-            </div>
+            </motion.div>
 
         </div>
     );

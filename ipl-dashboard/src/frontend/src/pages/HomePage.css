@@ -1,0 +1,59 @@
+.HomePage{
+    display: grid;
+    margin-top: 30px;
+    grid-template-columns: 65% 35%;
+    grid-template-rows: 1fr ;
+    grid-row-gap: 30px;
+
+
+
+    .header-section{
+        flex-direction: column;
+        justify-content: end;
+        align-items: center;
+        text-align: center;
+        justify-self: center;
+
+        .app-name{
+            position: relative;
+            font-size: 4rem;
+            font-weight: bolder;
+            text-shadow: 8px 8px 16px rgba(0, 0, 1, 0.5);
+            animation: zoomInOut 4s infinite alternate;
+        }
+    }
+
+    .ipl-logo{
+        position: relative;
+        justify-self: start;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+        text-shadow: 8px 8px 16px rgba(0, 0, 1, 0.5);
+        animation: zoomInOut 4s infinite alternate;
+    }
+
+    .team-grid{
+        grid-column: 2 span;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-column-gap: 30px;
+        grid-row-gap: 10px;
+
+
+    }
+
+
+}
+
+@keyframes zoomInOut {
+    0% {
+        transform: scale(1); /* Initial scale */
+    }
+    50% {
+        transform: scale(1.1); /* Zoom in */
+    }
+    100% {
+        transform: scale(1); /* Zoom out to original size */
+    }
+}

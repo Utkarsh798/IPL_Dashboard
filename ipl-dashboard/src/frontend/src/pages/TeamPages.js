@@ -5,15 +5,15 @@ import {MatchSmallCard} from "../component/MatchSmallCard";
 import { PieChart } from 'react-minimal-pie-chart';
 
 import './TeamPage.css';
-import {teams} from "../TeamLogoImages/TeamLogo";
+import {teams_array} from "../TeamLogoImages/TeamLogo";
+import {motion} from "framer-motion";
 
 export const TeamPage = () => {
 
     const [team, setTeam] = useState({matches: []});
     const {teamName} = useParams();
 
-    const selectedTeam = teams.find((teamData) => teamData.teamName === teamName);
-
+    const selectedTeam = teams_array.find((teamData) => teamData.teamName === teamName);
 
 
     useEffect(
@@ -32,22 +32,48 @@ export const TeamPage = () => {
         return <h1>Team not found</h1>
     }
 
+    const firstMatchYear = team.matches.length > 0 ? new Date(team.matches[0].date).getFullYear() : '';
+
 
 
     return (
-        <div className="TeamPage" style={{ backgroundColor: selectedTeam.teamColour }}>
-            <div className="Logo" style={{backgroundImage: `url(${selectedTeam?.logoUrl})`}} >
+        <motion.div className="TeamPage"
+             style={{ backgroundColor: selectedTeam.teamColour }}
+             initial={{y:"10px", opacity:0}}
+             animate={{y:0, opacity:1}}
+             exit={{y:"50%", opacity:0}}
+             transition={{duration: 0.7, delay: 0.2}}
+        >
+            <div className="back-button">
+                <h2 className="back-text">
+                    <Link to={`/`}>
+                        &lt;&lt; Back
+                    </Link>
 
+                </h2>
             </div>
 
-            <div className="t-shirt" style={{backgroundImage: `url(${selectedTeam?.tshirtUrl})`}}>
+            <motion.div className="Logo"
+                 style={{backgroundImage: `url(${selectedTeam?.logoUrl})`}}
+                 initial={{y:"10px", opacity:0}}
+                 animate={{y:0, opacity:1}}
+                 exit={{y:"50%", opacity:0}}
+                 transition={{duration: 0.7, delay: 0.3}}
+            />
 
-            </div>
+            <motion.div className="t-shirt"
+                 style={{backgroundImage: `url(${selectedTeam?.tshirtUrl})`}}
+                 initial={{y:"10px", opacity:0}}
+                 animate={{y:0, opacity:1}}
+                 exit={{y:"50%", opacity:0}}
+                 transition={{duration: 0.7, delay: 0.4}}
+            />
 
             <div className="team-name-section">
-                <h1 className="team-name">{team.teamName}</h1>
-            </div>
 
+                <h1 className="team-name">{team.teamName}</h1>
+
+            </div>
             <div className="win-loss-section" style={{ padding: '20px' }}>
                 <PieChart
                     data={[
@@ -68,11 +94,13 @@ export const TeamPage = () => {
                 <MatchDetailCard  teamName={team.teamName} match={team.matches[0]}/>
             </div>
 
-            {team.matches.slice(1).map(match => <MatchSmallCard teamName={team.teamName} match={match}/>)}
+            {team.matches.slice(1).map(
+                match =>
+                <MatchSmallCard key={match.id} teamName={team.teamName} match={match}/>)}
 
             <div className="more-link">
-                <Link to={`/teams/${teamName}/matches/${process.env.REACT_APP_DATA_END_YEAR}`} className="each-year">More >></Link>
+                <Link to={`/teams/${teamName}/matches/${firstMatchYear}`} className="each-year">More >></Link>
             </div>
-        </div>
+        </motion.div>
     );
 }

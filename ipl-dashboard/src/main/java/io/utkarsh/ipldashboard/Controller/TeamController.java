@@ -22,6 +22,11 @@ public class TeamController {
         this.matchRepository = matchRepository;
     }
 
+    @GetMapping("/team")
+    public Iterable<Team> getAllTeam(){
+        return teamRepository.findAll();
+    }
+
     @GetMapping("/team/{teamName}")
     public Team getTeam(@PathVariable String teamName) {
         Team team = this.teamRepository.findByTeamName(teamName);
@@ -38,6 +43,11 @@ public class TeamController {
                 startDate,
                 endDate
         );
+    }
+
+    @GetMapping ("/team/{teamName}/years")
+    public List<Integer> getAllYears(@PathVariable String teamName){
+        return this.matchRepository.getAllYears(teamName);
     }
 
 

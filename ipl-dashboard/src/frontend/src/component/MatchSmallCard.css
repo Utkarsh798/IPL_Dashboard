@@ -5,6 +5,9 @@
     border-radius: 20px;
     box-shadow: 0 8px 16px;
     padding:10px;
+    transition: transform 0.3s ease;
 
-
+}
+.MatchSmallCard:hover{
+    transform: scale(1.09);
 }
